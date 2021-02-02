@@ -11,8 +11,6 @@ class User {
       .where('username', String(username))
       .where('password', String(password))
 
-    console.log(query)
-
     if (query.length > 0) {
       const token = jwt.sign({ id: query[0].id }, 'my-secret-key', {
         expiresIn: 3600
