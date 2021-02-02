@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  background-color: #1E2E3D;
+}
+
+body, input, button {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+a, a:visited {
+  color: initial;
+  text-decoration: none;
+}
