@@ -5,10 +5,11 @@ import './style.css'
 
 interface IList {
   title: string
-  createLink: string
+  boxName: string
+  createLink?: string
 }
 
-const List: React.FC<IList> = ({ title, createLink }) => {
+const List: React.FC<IList> = ({ title, createLink, boxName, children }) => {
   return (
     <div className="list-container">
       <div className="header"></div>
@@ -16,58 +17,18 @@ const List: React.FC<IList> = ({ title, createLink }) => {
         <div className="title">{title}</div>
 
         <div className="btns">
-          <Link to={createLink}>
-            <button>Adicionar novo</button>
-          </Link>
+          {createLink && (
+            <Link to={createLink}>
+              <button>Adicionar novo</button>
+            </Link>
+          )}
         </div>
       </div>
 
       <div className="content">
-        <div className="title">Lista</div>
+        <div className="title">{boxName}</div>
 
-        <table>
-          <thead>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Cargo</th>
-            <th>Aniversário</th>
-            <th>Salário</th>
-            <th>Data de criação</th>
-            <th>Ações</th>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Laercio Calheiros</td>
-              <td>Programador</td>
-              <td>04/09/2000</td>
-              <td>R$ 1,00</td>
-              <td>03/02/2021 às 01:30</td>
-              <td>
-                <div className="btns">
-                  <div className="btn red">Excluir</div>
-                  <div className="btn green">Editar</div>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>1</td>
-              <td>Laercio Calheiros</td>
-              <td>Programador</td>
-              <td>04/09/2000</td>
-              <td>R$ 1,00</td>
-              <td>03/02/2021 às 01:30</td>
-              <td>
-                <div className="btns">
-                  <div className="btn red">Excluir</div>
-                  <div className="btn green">Editar</div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        {children}
       </div>
     </div>
   )
