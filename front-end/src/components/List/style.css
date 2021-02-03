@@ -84,6 +84,7 @@
   padding: 10px;
   margin: 8px;
   color: #FFF;
+  cursor: pointer;
 }
 
 .list-container .content table .btns .btn.green {

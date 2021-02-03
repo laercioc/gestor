@@ -1,15 +1,41 @@
-import React from 'react'
+import React, { FormEventHandler } from 'react'
+import Moment from 'moment'
+import 'moment/locale/pt-br'
 import { Route, Link } from 'react-router-dom'
 import List from '../../../components/List'
 
+import IPositions from '../../../interfaces/IPositions'
 import './styles.css'
 
 interface IAdmin {
   currentRoute: string
+
   handleUserLogout: React.MouseEventHandler<HTMLButtonElement>
+  handlePositionsAddSubmit: FormEventHandler
+  handleInputChangePosition: FormEventHandler
+  handlePositionsEditSubmit: FormEventHandler
+  DeletePosition: any
+  EditPosition: any
+  EditPositionState: IPositions
+
+  EmployeesList: string[]
+  PositionsList: IPositions[]
 }
 
-const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
+const Layout: React.FC<IAdmin> = ({
+  currentRoute,
+  handleUserLogout,
+
+  PositionsList,
+  handlePositionsAddSubmit,
+  handleInputChangePosition,
+  handlePositionsEditSubmit,
+  DeletePosition,
+  EditPosition,
+  EditPositionState,
+
+  EmployeesList
+}) => {
   return (
     <>
       <div className="admin_container">
@@ -132,29 +158,33 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Programador</td>
-                    <td>03/02/2021 às 01:30</td>
-                    <td>
-                      <div className="btns">
-                        <div className="btn red">Excluir</div>
-                        <div className="btn green">Editar</div>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>1</td>
-                    <td>Programador</td>
-                    <td>03/02/2021 às 01:30</td>
-                    <td>
-                      <div className="btns">
-                        <div className="btn red">Excluir</div>
-                        <div className="btn green">Editar</div>
-                      </div>
-                    </td>
-                  </tr>
+                  {PositionsList.map(item => (
+                    <tr key={item.id}>
+                      <td>{item.id}</td>
+                      <td>{item.name}</td>
+                      <td>
+                        {Moment(item.created_at, 'YYYYMMDD')
+                          .utcOffset(-3)
+                          .fromNow()}
+                      </td>
+                      <td>
+                        <div className="btns">
+                          <div
+                            className="btn red"
+                            onClick={() => DeletePosition(item.id)}
+                          >
+                            Excluir
+                          </div>
+                          <div
+                            className="btn green"
+                            onClick={() => EditPosition(item.id)}
+                          >
+                            Editar
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </List>
@@ -205,12 +235,41 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
               boxName="Adicione um novo cargos"
               backLink="/admin/positions"
             >
-              <form>
+              <form onSubmit={e => handlePositionsAddSubmit(e)}>
                 <div className="input-content">
                   <label htmlFor="name">Nome</label>
-                  <input type="text" id="name" name="name" />
+                  <input
+                    required
+                    type="text"
+                    id="name"
+                    name="name"
+                    onChange={handleInputChangePosition}
+                  />
                 </div>
-                <button>Enviar</button>
+                <button type="submit">Enviar</button>
+              </form>
+            </List>
+          </Route>
+
+          <Route path="/admin/positions/edit/:id" exact>
+            <List
+              title="Cargos"
+              boxName="Edite um cargos"
+              backLink="/admin/positions"
+            >
+              <form onSubmit={e => handlePositionsEditSubmit(e)}>
+                <div className="input-content">
+                  <label htmlFor="name">Nome</label>
+                  <input
+                    required
+                    type="text"
+                    id="name"
+                    name="name"
+                    defaultValue={EditPositionState.name}
+                    onChange={handleInputChangePosition}
+                  />
+                </div>
+                <button type="submit">Salvar</button>
               </form>
             </List>
           </Route>
