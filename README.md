@@ -30,3 +30,7 @@ Abra uma nova aba do terminal, navegue até a pasta do projeto `gestor` e rode o
 #### `cd front-end && npm install && npm run start`
 
 Pronto, se tudo deu certo, seu navegador deverá abrir uma nova aba na tela principal do app.
+
+## Acessando o administrativo
+
+Utilize o usuário `admin` e a senha `admin` para realizar a autenticação no web-app.
