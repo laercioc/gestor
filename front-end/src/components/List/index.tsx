@@ -7,9 +7,16 @@ interface IList {
   title: string
   boxName: string
   createLink?: string
+  backLink?: string
 }
 
-const List: React.FC<IList> = ({ title, createLink, boxName, children }) => {
+const List: React.FC<IList> = ({
+  title,
+  createLink,
+  boxName,
+  backLink,
+  children
+}) => {
   return (
     <div className="list-container">
       <div className="header"></div>
@@ -20,6 +27,12 @@ const List: React.FC<IList> = ({ title, createLink, boxName, children }) => {
           {createLink && (
             <Link to={createLink}>
               <button>Adicionar novo</button>
+            </Link>
+          )}
+
+          {backLink && (
+            <Link to={backLink}>
+              <button className="red">Voltar</button>
             </Link>
           )}
         </div>

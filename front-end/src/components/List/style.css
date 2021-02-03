@@ -30,6 +30,10 @@
   cursor: pointer;
 }
 
+.list-container .header-actions .btns button.red {
+  background: #FF2B6A;
+}
+
 .list-container .content {
   margin: 30px;
   background: #FFFFFF;
@@ -87,5 +91,31 @@
 }
 
 .list-container .content table .btns .btn.red {
-  background: #FF2B6A;;
+  background: #FF2B6A;
+}
+
+
+.list-container .content form .input-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-container .content form .input-content label {
+  font-size: 14px;
+  color: #293144;
+  margin-bottom: 8px;
+}
+
+.list-container .content form .input-content input, .list-container .content form .input-content select {
+  border: 1px solid rgba(0, 0, 0, 0.11);
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.list-container .content form button {
+  background: #29DA9A;
+  color: #FFFFFF;
+  padding: 12px;
+  font-size: 15px;
+  border: none;
 }

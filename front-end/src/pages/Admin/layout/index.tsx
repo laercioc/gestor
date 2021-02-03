@@ -25,7 +25,13 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
 
             <Link to={'/admin/employees'}>
               <li
-                className={currentRoute === '/admin/employees' ? 'active' : ''}
+                className={
+                  ['/admin/employees', '/admin/employees/create'].includes(
+                    currentRoute
+                  )
+                    ? 'active'
+                    : ''
+                }
               >
                 Funcionários
               </li>
@@ -33,7 +39,13 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
 
             <Link to={'/admin/positions'}>
               <li
-                className={currentRoute === '/admin/positions' ? 'active' : ''}
+                className={
+                  ['/admin/positions', '/admin/positions/create'].includes(
+                    currentRoute
+                  )
+                    ? 'active'
+                    : ''
+                }
               >
                 Cargos
               </li>
@@ -58,7 +70,7 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
             <List
               title="Funcionários"
               boxName="Lista de funcionários"
-              createLink="admin/employees/create"
+              createLink="/admin/employees/create"
             >
               <table>
                 <thead>
@@ -109,7 +121,7 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
             <List
               title="Cargos"
               boxName="Lista de cargos"
-              createLink="admin/positions/create"
+              createLink="/admin/positions/create"
             >
               <table>
                 <thead>
@@ -145,6 +157,61 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
                   </tr>
                 </tbody>
               </table>
+            </List>
+          </Route>
+
+          <Route path="/admin/employees/create" exact>
+            <List
+              title="Funcionários"
+              boxName="Adicione um novo funcionário"
+              backLink="/admin/employees"
+            >
+              <form>
+                <div className="input-content">
+                  <label htmlFor="name">Nome</label>
+                  <input type="text" id="name" name="name" />
+                </div>
+
+                <div className="input-content">
+                  <label htmlFor="surname">Sobrenome</label>
+                  <input type="text" id="surname" name="surname" />
+                </div>
+
+                <div className="input-content">
+                  <label htmlFor="office_id">Cargo</label>
+                  <select name="office_id" id="office_id">
+                    <option value="0">Selecione um cargo</option>
+                  </select>
+                </div>
+
+                <div className="input-content">
+                  <label htmlFor="birthday">Data de anivérsario</label>
+                  <input type="date" id="birthday" name="birthday" />
+                </div>
+
+                <div className="input-content">
+                  <label htmlFor="salary">Salário</label>
+                  <input type="number" id="salary" name="salary" />
+                </div>
+
+                <button>Enviar</button>
+              </form>
+            </List>
+          </Route>
+
+          <Route path="/admin/positions/create" exact>
+            <List
+              title="Cargos"
+              boxName="Adicione um novo cargos"
+              backLink="/admin/positions"
+            >
+              <form>
+                <div className="input-content">
+                  <label htmlFor="name">Nome</label>
+                  <input type="text" id="name" name="name" />
+                </div>
+                <button>Enviar</button>
+              </form>
             </List>
           </Route>
         </div>
