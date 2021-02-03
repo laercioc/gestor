@@ -5,8 +5,8 @@ import List from '../../../components/List'
 import './styles.css'
 
 interface IAdmin {
-  currentRoute: any
-  handleUserLogout: any
+  currentRoute: string
+  handleUserLogout: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
@@ -40,7 +40,7 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
             </Link>
           </ul>
 
-          <button className="logout" onClick={() => handleUserLogout()}>
+          <button className="logout" onClick={handleUserLogout}>
             Sair
           </button>
         </div>

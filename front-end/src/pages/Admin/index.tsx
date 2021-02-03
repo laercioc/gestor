@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { notify } from 'react-notify-toast'
 import { useHistory, useLocation } from 'react-router-dom'
 import {
   useDispatch,
@@ -8,7 +7,6 @@ import {
 } from 'react-redux'
 import IState from '../../redux/IStore'
 
-import API from '../../services/api'
 import Layout from './layout'
 
 const Admin: React.FC = () => {
