@@ -1,19 +1,33 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { notify } from 'react-notify-toast'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import {
+  useDispatch,
+  useSelector as useReduxSelector,
+  TypedUseSelectorHook
+} from 'react-redux'
+import IState from '../../redux/IStore'
 
 import API from '../../services/api'
 import Layout from './layout'
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const useSelector: TypedUseSelectorHook<IState> = useReduxSelector
+  const state = useSelector(state => state)
+
+  useEffect(() => {
+    if (state.user.logged) {
+      history.push('/admin')
+    }
+  }, [])
+
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   })
-
-  const dispatch = useDispatch()
-  const history = useHistory()
 
   async function handleSubmitFormLogin(e: FormEvent) {
     e.preventDefault()

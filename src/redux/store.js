@@ -1,6 +1,7 @@
 import { createStore } from 'redux'
 
 const initialState = {
+  loading: true,
   user: {
     logged: false,
     token: ''
@@ -8,6 +9,10 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+  if (action.type === 'SET_LOADING') {
+    return { ...state, loading: action.loading }
+  }
+
   if (action.type === 'SET_LOGGED') {
     return { ...state, user: { ...state.user, logged: true } }
   }

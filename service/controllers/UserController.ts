@@ -26,16 +26,15 @@ class User {
     const { token } = request.body
 
     try {
-      const payload = jwt.verify(token, 'my-secret-key')
-
-      const newToken = jwt.sign(payload, 'my-secret-key', {
+      const payload = <any>jwt.verify(token, 'my-secret-key')
+      const newToken = await jwt.sign({ id: payload.id }, 'my-secret-key', {
         expiresIn: 3600
       })
 
       return response.status(200).json({ success: true, token: newToken })
     } catch (err) {
       return response
-        .status(500)
+        .status(200)
         .json({ error: true, message: 'Token expirado!' })
     }
   }
