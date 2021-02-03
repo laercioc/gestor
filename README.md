@@ -25,7 +25,7 @@ Você deve realizar a instalação do packges em cada uma das pasta do projetos,
 
 Você deverá obter a seguinte messagem: `Server Listen On Port 3333`
 
-Abra uma nova aba do terminal, navegue até a pasta do projeto `gestor` e rode o seguinte comando:
+Abra uma nova aba do terminal, navegue até a pasta raiz do projeto `gestor` e rode o seguinte comando:
 
 #### `cd front-end && npm install && npm run start`
 
