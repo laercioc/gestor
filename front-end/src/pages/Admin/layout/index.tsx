@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
+import List from '../../../components/List'
 
 import './styles.css'
 
@@ -48,8 +49,8 @@ const Layout: React.FC<IAdmin> = ({ currentRoute, handleUserLogout }) => {
             <h1>main</h1>
           </Route>
 
-          <Route path="/admin/create" exact>
-            <h1>create</h1>
+          <Route path="/admin/employees" exact>
+            <List title="Funcionários" createLink="admin/employees/create" />
           </Route>
         </div>
       </div>

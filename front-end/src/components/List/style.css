@@ -1,0 +1,91 @@
+.list-container .header {
+  background: #293144;
+  height: 70px;
+  width: 100%;
+}
+
+.list-container .header-actions {
+  background: rgba(255, 255, 255, 0.77);
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+}
+
+.list-container .header-actions .title {
+  font-weight: 700;
+  font-size: 18px;
+  color: #293144;
+}
+
+.list-container .header-actions .btns button {
+  font-weight: 500;
+  font-size: 15px;
+  padding: 15px;
+  background: #29DA9A;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.list-container .content {
+  margin: 30px;
+  background: #FFFFFF;
+  padding: 24px;
+}
+
+.list-container .content .title {
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 22px;;
+  text-transform: uppercase;
+  color: #293144;
+}
+
+.list-container .content table {
+  width: 100%;
+}
+
+.list-container .content table thead {
+  color: #293144;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+
+.list-container .content table thead th {
+  height: 50px;
+}
+
+.list-container .content table tbody {
+  margin-top: 30px;
+}
+
+.list-container .content table tbody tr {
+  color: #293144;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.list-container .content table tbody tr td {
+  height: 50px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.list-container .content table .btns .btn {
+  padding: 10px;
+  margin: 8px;
+  color: #FFF;
+}
+
+.list-container .content table .btns .btn.green {
+  background: #29DA9A;
+}
+
+.list-container .content table .btns .btn.red {
+  background: #FF2B6A;;
+}
