@@ -12,7 +12,6 @@ class Positions {
   }
 
   async Create(request: Request, response: Response) {
-    //const {name, surname, birthday, salary, office_id} = request.body
     const {name} = request.body
 
     const insert = await knex('positions').insert({name})

@@ -11,6 +11,7 @@ import IState from '../../redux/IStore'
 import Layout from './layout'
 import API from '../../services/api'
 import IPositions from '../../interfaces/IPositions'
+import IEmployees from '../../interfaces/IEmployees'
 
 const Admin: React.FC = () => {
   const dispatch = useDispatch()
@@ -21,15 +22,34 @@ const Admin: React.FC = () => {
   const state = useSelector(state => state)
 
   const [postions, setPositions] = useState<IPositions[]>([])
-  const [employees, setEmployees] = useState([])
+  const [employees, setEmployees] = useState<IEmployees[]>([])
 
-  const [formDataPositions, setFormDataPositions] = useState({
+  const [formDataPositions, setFormDataPositions] = useState<IPositions>({
     name: ''
+  })
+
+  const [formDataEmployees, setFormDataEmployees] = useState<IEmployees>({
+    name: '',
+    surname: '',
+    birthday: '',
+    salary: 0,
+    office_id: 0
   })
 
   const [EditPositionState, setEditPositionState] = useState<IPositions>({
     id: 0,
     name: '',
+    created_at: ''
+  })
+
+  const [EditEmployeesState, setEditEmployeesState] = useState<IEmployees>({
+    id: 0,
+    name: '',
+    surname: '',
+    birthday: '',
+    salary: 0,
+    position: '',
+    office_id: 0,
     created_at: ''
   })
 
@@ -78,6 +98,7 @@ const Admin: React.FC = () => {
 
     if (!response.data.error) {
       setPositions(prevState => prevState.filter(item => item.id !== id))
+      return notify.show('Cargo excluído com sucesso!', 'success', 5000)
     }
   }
 
@@ -133,6 +154,7 @@ const Admin: React.FC = () => {
   function EditPosition(id: number) {
     const data = postions.filter(item => item.id === id)
     setEditPositionState(data[0])
+    setFormDataPositions(data[0])
 
     history.push(`/admin/positions/edit/${id}`)
   }
@@ -144,10 +166,94 @@ const Admin: React.FC = () => {
     })
   }
 
+  // employees
+  async function DeleteEmployees(id: number) {
+    const response = await API.delete(`/employees/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+
+    if (!response.data.error) {
+      setEmployees(prevState => prevState.filter(item => item.id !== id))
+      return notify.show('Funcionário excluído com sucesso!', 'success', 5000)
+    }
+  }
+
+  async function handleEmployeesAddSubmit(e: FormEvent) {
+    e.preventDefault()
+
+    const response = await API.post('/employees', formDataEmployees, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+
+    if (response.data.error) {
+      return notify.show(response.data.message, 'error', 5000)
+    } else {
+      setEmployees(prevState => [response.data, ...prevState])
+      history.push('/admin/employees')
+
+      return notify.show(
+        'Funcionários adicionado com sucesso!',
+        'success',
+        5000
+      )
+    }
+  }
+
+  async function handleEmployeesEditSubmit(e: FormEvent) {
+    e.preventDefault()
+
+    const response = await API.put(
+      '/employees',
+      {
+        id: EditEmployeesState.id,
+        ...formDataEmployees
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }
+    )
+
+    if (response.data.error) {
+      return notify.show(response.data.message, 'error', 5000)
+    } else {
+      setEmployees(prevState =>
+        prevState.map(item =>
+          item.id === EditEmployeesState.id ? response.data : item
+        )
+      )
+      history.push('/admin/employees')
+
+      return notify.show('Funcionário editado com sucesso!', 'success', 5000)
+    }
+  }
+
+  function EditEmployees(id: number) {
+    const data = employees.filter(item => item.id === id)
+    setEditEmployeesState(data[0])
+    setFormDataEmployees(data[0])
+
+    history.push(`/admin/employees/edit/${id}`)
+  }
+
+  function handleInputChangeEmployees(e: ChangeEvent<HTMLInputElement>) {
+    setFormDataEmployees({
+      ...formDataEmployees,
+      [e.target.name]: e.target.value
+    })
+  }
+
   return (
     <Layout
+      // general
       currentRoute={location.pathname}
       handleUserLogout={handleUserLogout}
+      // positions
       PositionsList={postions}
       handlePositionsAddSubmit={handlePositionsAddSubmit}
       handleInputChangePosition={handleInputChangePosition}
@@ -155,7 +261,14 @@ const Admin: React.FC = () => {
       DeletePosition={DeletePosition}
       EditPosition={EditPosition}
       EditPositionState={EditPositionState}
+      // employees
       EmployeesList={employees}
+      handleEmployeesAddSubmit={handleEmployeesAddSubmit}
+      handleInputChangeEmployees={handleInputChangeEmployees}
+      handleEmployeesEditSubmit={handleEmployeesEditSubmit}
+      DeleteEmployees={DeleteEmployees}
+      EditEmployees={EditEmployees}
+      EditEmployeesState={EditEmployeesState}
     />
   )
 }
