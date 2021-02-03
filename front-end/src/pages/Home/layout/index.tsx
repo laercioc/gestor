@@ -21,19 +21,21 @@ const Layout: React.FC<Props> = ({
           </div>
 
           <form onSubmit={e => handleSubmitFormLogin(e)}>
+            <label htmlFor="username">Usuário</label>
             <input
               name="username"
+              id="username"
               type="text"
               required
-              placeholder="Digite seu usuário"
               onChange={handleInputChange}
             />
 
+            <label htmlFor="password">Senha</label>
             <input
               name="password"
               type="password"
+              id="password"
               required
-              placeholder="Digite sua senha"
               onChange={handleInputChange}
             />
 

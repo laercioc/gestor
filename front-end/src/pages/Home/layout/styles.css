@@ -8,19 +8,17 @@
 
 .home_container .content {
   padding: 30px 25px;
-  background-color: #283442;
+  background-color: #FFFfFF;
   display: flex;
   flex-direction: column;
   margin: 30px;
   width: 370px;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-top: 8px solid #293144;
 }
 
 .home_container .content .title {
-  color: #FFFFFF;
+  color: #293144;
   margin-bottom: 35px;
-  text-align: center;
 }
 
 .home_container .content .title h1 {
@@ -39,22 +37,22 @@
 }
 
 .home_container .content form input {
-  padding: 16px 15px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: #1E2E3D;
-  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.11);
+  padding: 12px;
+  margin-bottom: 20px;
 }
 
-.home_container .content form input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+.home_container .content form label {
+  font-size: 14px;
+  color: #293144;
+  margin-bottom: 4px;
 }
 
 .home_container .content form button {
-  padding: 8px;
-  background: #FFF;
-  font-weight: bold;
+  background: #29DA9A;
+  color: #FFFFFF;
+  padding: 12px;
+  font-size: 15px;
   border: none;
-  border-radius: 4px;
+  max-width: 100px;
 }
