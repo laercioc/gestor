@@ -17,17 +17,20 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `name` varchar(200) NOT NULL,
   `surname` varchar(200) NOT NULL,
   `office_id` int(11) NOT NULL,
-  `birthday` date NOT NULL,
-  `salary` date NOT NULL,
+  `birthday` varchar(50) NOT NULL DEFAULT '',
+  `salary` int(11) NOT NULL,
   `status` enum('active','deleted') NOT NULL DEFAULT 'active',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `office_id` (`office_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela gestor.employees: 0 rows
+-- Copiando dados para a tabela gestor.employees: 2 rows
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` (`id`, `name`, `surname`, `office_id`, `birthday`, `salary`, `status`, `created_at`, `updated_at`) VALUES
+	(3, 'Laercio', 'Calheiros', 10, '2000-09-04', 2500, 'active', '2021-02-03 17:44:24', '2021-02-03 18:05:11'),
+	(4, 'João', 'Birelo', 1, '2001-01-01', 1500, 'active', '2021-02-03 18:35:54', '2021-02-03 18:35:54');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela gestor.positions
@@ -38,12 +41,12 @@ CREATE TABLE IF NOT EXISTS `positions` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela gestor.positions: 1 rows
 /*!40000 ALTER TABLE `positions` DISABLE KEYS */;
 INSERT INTO `positions` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-	(1, 'Programadores', 'active', '2021-02-03 13:42:13', '2021-02-03 16:20:28');
+	(1, 'Programadores', 'active', '2021-02-03 13:42:13', '2021-02-03 18:01:56');
 /*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela gestor.users
