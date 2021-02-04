@@ -247,6 +247,7 @@ const Layout: React.FC<IAdmin> = ({
                     required
                     onChange={handleInputChangeEmployees}
                   >
+                    <option value="0">Selecione um cargo</option>
                     {PositionsList.map(item => (
                       <option key={item.id} value={item.id}>
                         {item.name}
@@ -321,6 +322,7 @@ const Layout: React.FC<IAdmin> = ({
                     required
                     onChange={handleInputChangeEmployees}
                   >
+                    <option value="0">Selecione um cargo</option>
                     {PositionsList.map(item => (
                       <option
                         key={item.id}
