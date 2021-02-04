@@ -16,6 +16,10 @@ class Employees {
   async Create(request: Request, response: Response) {
     const {name, surname, birthday, salary, office_id} = request.body
 
+    if(office_id == 0){
+      response.json({error: true, message: 'Selecione um cargo para esse usuário'})
+    }
+
     const insert = await knex('employees').insert({name, surname, birthday, salary, office_id})
 
     const query = await knex('employees')
