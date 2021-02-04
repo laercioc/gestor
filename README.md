@@ -11,7 +11,7 @@ Clone o projeto utilizando o commando:
 
 Entre na pasta do projeto utilizando o comando
 
-#### `cd gestor-master`
+#### `cd gestor`
 
 O primeiro passo é realizar a criação de um banco de dados e configurar o arquivo `.env` com os dados de acesso, o arquivo com as tabelas encontra-se na pasta raiz do projeto, nomeado de `gestor.sql`.
 
@@ -25,7 +25,7 @@ Você deve realizar a instalação do packges em cada uma das pasta do projetos,
 
 Você deverá obter a seguinte messagem: `Server Listen On Port 3333`
 
-Abra uma nova aba do terminal, navegue até a pasta raiz do projeto `gestor-master` e rode o seguinte comando:
+Abra uma nova aba do terminal, navegue até a pasta raiz do projeto `gestor` e rode o seguinte comando:
 
 #### `cd front-end && npm install && npm run start`
 
