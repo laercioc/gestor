@@ -135,8 +135,7 @@ const Layout: React.FC<IAdmin> = ({
                       </td>
                       <td>{item.position}</td>
                       <td>{item.birthday}</td>
-                      {/* eslint-disable-next-line */}
-                      <td>R$ {(item.salary).toFixed(2)}</td>
+                      <td>R$ {item.salary}</td>
                       <td>
                         {Moment(item.created_at, 'YYYYMMDD')
                           .utcOffset(-3)
